@@ -31,7 +31,7 @@ export default function TableUsers() {
                 .then(res=>res.json())
                 .then(json=>dispatch(updateUsers(json)))
         }catch{
-            console.log('Error getting data from fakestoreapi')
+            alert('Error getting data from fakestoreapi')
             return []
         }
     }
@@ -69,18 +69,16 @@ export default function TableUsers() {
                                         <td>{user.phone}</td>
                                         <td>{user.address?.city}</td>
                                         <td style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-                                            <button onClick={()=> updateUser(index)} >Edit</button>
-                                            <button onClick={()=> deleteUser(index)} >Delete</button>
+                                            <button onClick={()=> updateUser(index)} className='bt_edit' >Edit</button>
+                                            <button onClick={()=> deleteUser(index)} className='bt_delete'>Delete</button>
                                         </td>
                                     </tr>
                                 )}
                                 
                             </tbody>
                         </table>
-                        <div style={{display:'flex', textAlign:'center', width:'100vw', justifyContent:'center'}}>
-                            <div style={{border:'0.1rem solid black', borderRadius:'0.5rem', margin:'1rem'}}>
-                                <Link to="/adduser">Adicionar usuário</Link>
-                            </div>
+                        <div style={{display:'flex', textAlign:'center', justifyContent:'center', backgroundColor:'white', borderRadius:'0.5rem'}}>
+                            <button onClick={() => navigate('/adduser')} className='bt_add'>Adicionar usuario</button>
                         </div>
 
                     </div>

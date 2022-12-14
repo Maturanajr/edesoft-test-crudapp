@@ -1,6 +1,7 @@
-table, th, td {
-    border: 1px solid;
-  }
+body{
+  font-family: 'Helvetica Neue', Helvetica,
+}
+
 
 button{
     width: 4rem;
@@ -10,9 +11,44 @@ button{
     cursor: pointer;
     margin: 0.1rem;
 }
+.bt_delete{
+    background-color: red;
+    color: white;
+}
+.bt_edit{
+    background-color: yellow;
+    color: black;
+}
+.bt_add{
+    margin: 1rem;
+    display: flex;
+    width: 8rem;
+    height: 3rem;
+    background-color: green;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
 
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .row{
     display: flex;
     flex-direction: column;
     justify-items: center;
+    max-width: 80%;
+    border-radius: 0.5rem;
+    border: 0.1rem solid;
+    background-color: rgb(134, 134, 255);
+}
+th{
+    background-color: rgb(134, 134, 255);
+    color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,1);
+}
+tbody{
+    background-color: white;
 }
