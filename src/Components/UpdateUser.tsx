@@ -26,11 +26,18 @@ export default function UpdateUsers() {
         UserDict.name.lastname = lastname;
         UserDict.phone=phone;
         UserDict.address.city=city;
+        fetch('https://fakestoreapi.com/users/7',{
+                method:"PATCH",
+                body:JSON.stringify(UserDict)
+            })
+                .then(res=>res.json())
+                .then(()=>{alert('Usuário atualizado')
         let list_users = JSON.parse(JSON.stringify(users));
         let index = users.indexOf(selected_user);
         list_users[index] = UserDict;
         dispatch(updateUsers(list_users))
         navigate('/')
+        })
     }
 
   return (

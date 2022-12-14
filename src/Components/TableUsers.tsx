@@ -24,7 +24,7 @@ export default function TableUsers() {
         })
         .then(res=>res.json())
         .then(json=>{
-            if (json){alert('Deleted user from fakestoreapi: '+json.email)}else{alert('Deleted recent added user '+users[userIndex].email)};
+            if (json){alert('Deleted user from fakestoreapi: '+json.email)}else{alert('Deleted recent added user: '+users[userIndex].email)};
         let listUsers;
         listUsers = Object.assign([],users);
         listUsers.splice(userIndex,1);
