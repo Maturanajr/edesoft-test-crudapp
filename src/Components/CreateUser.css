@@ -1,0 +1,24 @@
+.inputUser{
+    display: flex;
+    margin: 1rem;
+    align-items: center;
+}
+
+.inputUser input{
+    height: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.addUserScreen{
+    background-color: rgba(0,0,0,.3);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    padding-top: 5rem;
+    width: 100%;
+    height: 100vh;
+}
+

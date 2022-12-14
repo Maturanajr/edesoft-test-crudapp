@@ -1,15 +1,16 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Login from './Pages/Login/Login'
-import CreateAccount from './Pages/CreateAccount/CreateAccount'
+import TableUsers from './Components/TableUsers'
+import CreateUser from './Components/CreateUser'
+import UpdateUsers from './Components/UpdateUser'
 
 export default function Router() {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path='' element={<Login/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<CreateAccount/>}/>
+            <Route path='' element={<TableUsers/>}/>
+            <Route path='/adduser' element={<CreateUser/>}/>
+            <Route path='/updateuser' element={<UpdateUsers/>}/>
         </Routes>
     </BrowserRouter>
   )
