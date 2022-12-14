@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../redux/store'
-import type { userData } from '../Types/User'
 import { updateUsers } from '../redux/userSlice'
 import { useNavigate } from 'react-router-dom'
+import { trackPromise } from 'react-promise-tracker';
+import Loading from './loading'
 import './CreateUser.css'
 import userDataFilled from '../Types/User'
 
@@ -24,6 +25,7 @@ export default function CreateUser() {
         UserDict.name.lastname = lastname;
         UserDict.phone=phone;
         UserDict.address.city=city;
+        trackPromise(
         fetch('https://fakestoreapi.com/users',{
             method:"POST",
             body:JSON.stringify(UserDict)
@@ -36,12 +38,13 @@ export default function CreateUser() {
         listUsers.push(UserDict)
         dispatch(updateUsers(listUsers))
         navigate('/')}
-        else{alert('Erro ao adicionar usuário');}})
+        else{alert('Erro ao adicionar usuário');}}))
     }
 
 
   return (
     <div className='addUserScreen' >
+      <Loading/>
       <h1>Adicionar usuário</h1>
       <div className='container_user'>
         <div className='inputUser'>

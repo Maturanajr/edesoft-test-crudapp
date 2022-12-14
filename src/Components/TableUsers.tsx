@@ -1,10 +1,11 @@
 import React,{useEffect} from 'react'
-import { Link } from 'react-router-dom'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../redux/store'
 import { updateUsers } from '../redux/userSlice'
 import { selectUser } from '../redux/selectedUserSlice'
 import { useNavigate } from 'react-router-dom';
+import { trackPromise } from 'react-promise-tracker';
+import Loading from './loading'
 import './TableUsers.css'
 
 
@@ -19,24 +20,26 @@ export default function TableUsers() {
     }
 
     const deleteUser = (userIndex:number) =>{
-        fetch('https://fakestoreapi.com/users/'+users[userIndex].id,{
-            method:"DELETE"
-        })
-        .then(res=>res.json())
-        .then(json=>{
-            if (json){alert('Deleted user from fakestoreapi: '+json.email)}else{alert('Deleted recent added user: '+users[userIndex].email)};
-        let listUsers;
-        listUsers = Object.assign([],users);
-        listUsers.splice(userIndex,1);
-        dispatch(updateUsers(listUsers));
-        })
+        trackPromise(
+            fetch('https://fakestoreapi.com/users/'+users[userIndex].id,{
+                method:"DELETE"
+            })
+            .then(res=>res.json())
+            .then(json=>{
+                if (json){alert('Deleted user from fakestoreapi: '+json.email)}else{alert('Deleted recent added user: '+users[userIndex].email)};
+            let listUsers;
+            listUsers = Object.assign([],users);
+            listUsers.splice(userIndex,1);
+            dispatch(updateUsers(listUsers));
+        }));
     }
     
     const getUsersFromFakeapi = async () => {
         try{
+            trackPromise(
             fetch('https://fakestoreapi.com/users')
                 .then(res=>res.json())
-                .then(json=>dispatch(updateUsers(json)))
+                .then(json=>dispatch(updateUsers(json))))
         }catch{
             alert('Error getting data from fakestoreapi')
             return []
@@ -54,6 +57,7 @@ export default function TableUsers() {
 
   return (
     <div> 
+      <Loading/>
       <div className="container">
                     <div className="row">
                         <table className="table table-bordered">

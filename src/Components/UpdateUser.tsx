@@ -1,12 +1,11 @@
 import React, {useState,useEffect} from 'react'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../redux/store'
-import type { userData } from '../Types/User'
 import { updateUsers } from '../redux/userSlice'
 import { useNavigate } from 'react-router-dom'
 import './CreateUser.css'
-import userDataFilled from '../Types/User'
-import {UserList} from '../redux/userSlice'
+import { trackPromise } from 'react-promise-tracker';
+import Loading from './loading'
 
 export default function UpdateUsers() {
     const users = useSelector((state:RootState) => state.users.user_list)
@@ -26,6 +25,7 @@ export default function UpdateUsers() {
         UserDict.name.lastname = lastname;
         UserDict.phone=phone;
         UserDict.address.city=city;
+        trackPromise(
         fetch('https://fakestoreapi.com/users/7',{
                 method:"PATCH",
                 body:JSON.stringify(UserDict)
@@ -37,11 +37,12 @@ export default function UpdateUsers() {
         list_users[index] = UserDict;
         dispatch(updateUsers(list_users))
         navigate('/')
-        })
+        }))
     }
 
   return (
     <div className='addUserScreen' >
+      <Loading/>
       <h1>Atualizar usuário</h1>
       <div className='container_user'>
         <div className='inputUser'>
