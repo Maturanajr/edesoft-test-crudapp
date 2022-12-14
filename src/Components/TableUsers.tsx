@@ -68,7 +68,7 @@ export default function TableUsers() {
                                         <td>{user.email}</td>
                                         <td>{user.phone}</td>
                                         <td>{user.address?.city}</td>
-                                        <td style={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
+                                        <td style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                                             <button onClick={()=> updateUser(index)} >Edit</button>
                                             <button onClick={()=> deleteUser(index)} >Delete</button>
                                         </td>
