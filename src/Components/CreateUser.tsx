@@ -29,13 +29,14 @@ export default function CreateUser() {
             body:JSON.stringify(UserDict)
         })
             .then(res=>res.json())
-            .then(json=>console.log(json))
-
+            .then(json=>{
+        if (json){
         let listUsers;
         listUsers = JSON.parse(JSON.stringify(users))
         listUsers.push(UserDict)
         dispatch(updateUsers(listUsers))
-        navigate('/')
+        navigate('/')}
+        else{alert('Erro ao adicionar usuário');}})
     }
 
 
