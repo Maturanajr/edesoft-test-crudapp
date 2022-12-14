@@ -36,7 +36,7 @@ export default function UpdateUsers() {
   return (
     <div className='addUserScreen' >
       <h1>Atualizar usuário</h1>
-      <div style={{ border:'0.1rem solid black', backgroundColor:'white', height:'23rem', borderRadius:'0.5rem', maxWidth:'40rem'}}>
+      <div className='container_user'>
         <div className='inputUser'>
             <p>Email:</p>
             <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" id='input_email' style={{flexGrow:'1'}}/>
@@ -55,7 +55,9 @@ export default function UpdateUsers() {
             <p>Cidade:</p>
             <input onChange={(e) => setCity(e.target.value)} value={city} type="text" id='city'/>
         </div>
-        <button id='bt_add' onClick={attUser} style={{backgroundColor:'white', borderRadius:'0.3rem', border:'0.1rem solid gray', cursor:'pointer', height:'1.5rem'}}>Atualizar</button>
+        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+          <button id='bt_add' onClick={attUser} style={{backgroundColor:'white', borderRadius:'0.3rem', border:'0.1rem solid gray', cursor:'pointer', height:'1.5rem'}}>Atualizar</button>
+        </div>
       </div>
     </div>
   )
