@@ -18,14 +18,21 @@ export default function CreateUser() {
     const navigate = useNavigate();
 
     const addUser = async () =>{
-        let UserDict = Object.assign(userDataFilled);
+        let UserDict = JSON.parse(JSON.stringify(userDataFilled));
         UserDict.email = email;
         UserDict.name.firstname = firstname;
         UserDict.name.lastname = lastname;
         UserDict.phone=phone;
         UserDict.address.city=city;
+        fetch('https://fakestoreapi.com/users',{
+            method:"POST",
+            body:JSON.stringify(UserDict)
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+
         let listUsers;
-        listUsers = Object.assign([],users)
+        listUsers = JSON.parse(JSON.stringify(users))
         listUsers.push(UserDict)
         dispatch(updateUsers(listUsers))
         navigate('/')
