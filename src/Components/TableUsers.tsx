@@ -19,6 +19,12 @@ export default function TableUsers() {
     }
 
     const deleteUser = (userIndex:number) =>{
+        fetch('https://fakestoreapi.com/users/'+users[userIndex].id,{
+            method:"DELETE"
+        })
+        .then(res=>res.json())
+        .then(json=>{
+            alert('Deleted user: '+json.email ?? users[userIndex].email)})
         let listUsers;
         listUsers = Object.assign([],users);
         listUsers.splice(userIndex,1);
